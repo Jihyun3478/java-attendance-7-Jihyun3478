@@ -17,4 +17,14 @@ public enum EducationTime {
         this.startTime = startTime;
         this.endTime = endTime;
     }
+
+    public static int startTimeByDayOfWeek(String dayOfWeek) {
+        int startTime = 0;
+        for(EducationTime educationTime : EducationTime.values()) {
+            if(educationTime.dayOfWeek.equals(dayOfWeek)) {
+                startTime = educationTime.startTime;
+            }
+        }
+        return startTime;
+    }
 }

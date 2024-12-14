@@ -3,8 +3,6 @@ package attendance.view;
 import java.util.List;
 
 import attendance.domain.Attendance;
-import attendance.domain.AttendanceType;
-import attendance.domain.Attendances;
 
 public class OutputView {
     public static void start(int day, String dayOfWeek) {

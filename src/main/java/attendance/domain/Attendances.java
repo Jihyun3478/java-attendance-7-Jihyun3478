@@ -22,8 +22,24 @@ public class Attendances {
         return attendancesByNickname;
     }
 
-    public void add(String nickname, int currentDay, String time) {
-        attendances.add(new Attendance(nickname, "2024-12-" + currentDay + " " + time, AttendanceType.출석));
+    public void add(String nickname, int currentDay, String time, String dayOfWeek) {
+        int startTime = EducationTime.startTimeByDayOfWeek(dayOfWeek);
+        String[] splitTime = getSplitTime(time);
+        int hour = Integer.parseInt(splitTime[0]);
+        int minute = Integer.parseInt(splitTime[1]);
+
+        AttendanceType attendanceType = null;
+        if(startTime <= hour && minute > 5) {
+            attendanceType = AttendanceType.지각;
+        }
+        if(startTime <= hour && minute > 30) {
+            attendanceType = AttendanceType.결석;
+        }
+        attendances.add(new Attendance(nickname, "2024-12-" + currentDay + " " + time, attendanceType));
+    }
+
+    private static String[] getSplitTime(String time) {
+        return time.split(":");
     }
 
     public boolean isRegisterCrew(String nickname) {

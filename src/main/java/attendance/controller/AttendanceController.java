@@ -32,7 +32,7 @@ public class AttendanceController {
             OutputView.start(day, dayOfWeek);
             chooseFunction = InputView.chooseFunction();
             // TODO: 5가 아닌 day로 수정
-            Calendar.isWeekend(5, dayOfWeek);
+            Calendar.isHoliday(day, dayOfWeek);
 
             if (chooseFunction.equals("1")) {
                 checkAttendance(day, dayOfWeek);
@@ -56,7 +56,7 @@ public class AttendanceController {
         OutputView.inputGoTime();
         String time = InputView.goTime();
 
-        this.attendances = attendanceService.check(nickname, time, attendances, day);
+        this.attendances = attendanceService.check(nickname, time, attendances, day, dayOfWeek);
 
         OutputView.finishAttendanceTime(day, dayOfWeek, time);
     }
