@@ -15,7 +15,7 @@ public class OutputView {
         System.out.println("닉네임을 입력해 주세요.");
     }
 
-    public static void inputTime() {
+    public static void inputGoTime() {
         System.out.print("등교 시간을 입력해 주세요.");
     }
 
