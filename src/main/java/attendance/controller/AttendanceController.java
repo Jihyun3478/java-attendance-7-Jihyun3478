@@ -1,5 +1,7 @@
 package attendance.controller;
 
+import static attendance.exception.ErrorMessage.*;
+
 import java.util.List;
 
 import attendance.domain.Attendance;
@@ -53,8 +55,15 @@ public class AttendanceController {
         /* 출석 확인 */
         OutputView.inputNickname();
         String nickname = InputView.nickname();
+        attendanceService.isRegisterCrew(nickname, attendances);
         OutputView.inputGoTime();
         String time = InputView.goTime();
+        String[] splitTime = time.split(":");
+        int hour = Integer.parseInt(splitTime[0]);
+        int minute = Integer.parseInt(splitTime[0]);
+        if(hour > 24 || minute > 60) {
+            throw new IllegalArgumentException(INVALID_FORMAT.getMessage());
+        }
 
         this.attendances = attendanceService.check(nickname, time, attendances, day, dayOfWeek);
 

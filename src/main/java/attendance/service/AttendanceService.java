@@ -20,7 +20,7 @@ public class AttendanceService {
         return attendances.getAttendancesByNickname(nickname);
     }
 
-    private boolean isRegisterCrew(String nickname, Attendances attendances) {
+    public boolean isRegisterCrew(String nickname, Attendances attendances) {
         return attendances.isRegisterCrew(nickname);
     }
 
