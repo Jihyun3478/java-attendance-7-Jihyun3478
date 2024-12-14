@@ -61,7 +61,7 @@ public class AttendanceController {
         String[] splitTime = time.split(":");
         int hour = Integer.parseInt(splitTime[0]);
         int minute = Integer.parseInt(splitTime[0]);
-        if(hour > 24 || minute > 60) {
+        if (hour > 24 || minute > 60) {
             throw new IllegalArgumentException(INVALID_FORMAT.getMessage());
         }
 
@@ -75,12 +75,12 @@ public class AttendanceController {
         OutputView.inputModifyAttendanceNickname();
         String modifyTargetNickname = InputView.nickname();
         OutputView.inputModifyDate();
-        String modifyDate = InputView.modifyDate();
+        String modifyDay = InputView.modifyDay();
         OutputView.inputWhenModify();
         String modifyTime = InputView.modifyTime();
         OutputView.finishModifyTime();
 
-
+        attendanceService.modify(modifyTargetNickname, modifyDay, modifyTime);
     }
 
     private void recordAttendance() {

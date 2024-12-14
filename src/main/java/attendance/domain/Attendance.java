@@ -3,7 +3,7 @@ package attendance.domain;
 public class Attendance {
     private final String nickname;
     private final String date;
-    private final String time;
+    private String time;
     private final AttendanceType attendanceType;
 
     public Attendance(String nickname, String datetime, AttendanceType attendanceType) {
@@ -24,6 +24,10 @@ public class Attendance {
 
     public String getTime() {
         return time;
+    }
+
+    public void modifyTime(String time) {
+        this.time = time;
     }
 
     public AttendanceType getAttendanceType() {

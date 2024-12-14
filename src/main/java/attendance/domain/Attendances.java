@@ -22,6 +22,16 @@ public class Attendances {
         return attendancesByNickname;
     }
 
+    public Attendance getAttendanceByNickname(String currentDate, String nickname) {
+        for(Attendance attendance : attendances) {
+            String date = attendance.getDate();
+            if(attendance.getNickname().equals(nickname) && date.equals(currentDate)) {
+                return attendance;
+            }
+        }
+        throw new IllegalArgumentException(NOT_EXIST_NICKNAME.getMessage());
+    }
+
     public void add(String nickname, int currentDay, String time, String dayOfWeek) {
         int startTime = EducationTime.startTimeByDayOfWeek(dayOfWeek);
         String[] splitTime = getSplitTime(time);

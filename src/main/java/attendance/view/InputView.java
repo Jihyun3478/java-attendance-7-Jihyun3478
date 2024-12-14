@@ -15,7 +15,7 @@ public class InputView {
         return input();
     }
 
-    public static String modifyDate() {
+    public static String modifyDay() {
         return input();
     }
 

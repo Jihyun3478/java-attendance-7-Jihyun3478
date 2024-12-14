@@ -16,6 +16,15 @@ public class AttendanceService {
         return attendances;
     }
 
+    public void modify(String nickname, String modifyDate, String modifyTime) {
+        Attendance attendance = attendanceByNickname(modifyDate, nickname);
+        attendance.modifyTime(modifyTime);
+    }
+
+    private Attendance attendanceByNickname(String modifyDate, String nickname) {
+        return attendances.getAttendanceByNickname(modifyDate, nickname);
+    }
+
     public List<Attendance> attendancesByNickname(Attendances attendances, String nickname) {
         return attendances.getAttendancesByNickname(nickname);
     }
