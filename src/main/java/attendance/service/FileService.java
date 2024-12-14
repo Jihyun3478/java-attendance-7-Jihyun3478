@@ -11,7 +11,7 @@ import attendance.util.Parser;
 public class FileService {
     private static final String FILE_PATH = "src/main/resources/attendances.csv";
 
-    public Attendances createAttendances() {
+    public static Attendances createAttendances() {
         List<String> lines = FileReader.readFile(new File(FILE_PATH));
         List<Attendance> attendances = Parser.parseAttendance(lines);
         return new Attendances(attendances);

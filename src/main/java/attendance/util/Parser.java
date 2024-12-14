@@ -7,6 +7,14 @@ import java.util.stream.Collectors;
 import attendance.domain.Attendance;
 
 public class Parser {
+	public static int convertToInt(String input) {
+		try {
+			return Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("금액은 숫자여야 합니다.");
+		}
+	}
+
 	public static List<Attendance> parseAttendance(List<String> lines) {
 		return lines.stream()
 			.skip(1)

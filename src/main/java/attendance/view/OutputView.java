@@ -1,8 +1,8 @@
 package attendance.view;
 
 public class OutputView {
-    public static void start() {
-        System.out.println("오늘은 12월 13일 금요일입니다. 기능을 선택해 주세요.");
+    public static void start(int day, String dayOfWeek) {
+        System.out.println("오늘은 12월 " + day + "일 " + dayOfWeek + "입니다. 기능을 선택해 주세요.");
         System.out.println("1. 출석 확인\n"
             + "2. 출석 수정\n"
             + "3. 크루별 출석 기록 확인\n"
@@ -19,8 +19,10 @@ public class OutputView {
         System.out.print("등교 시간을 입력해 주세요.");
     }
 
-    public static void finishAttendanceTime() {
-        System.out.print("12월 13일 금요일 09:59 (출석)");
+    public static void finishAttendanceTime(int day, String dayOfWeek, String time) {
+        System.out.printf("12월 %d일 %s %s (출석)", day, dayOfWeek, time);
+        System.out.println();
+
     }
 
     /* 출석 수정 */
@@ -61,17 +63,13 @@ public class OutputView {
             + "면담 대상자입니다.");
     }
 
-    /* 출석 기록 */
+    /* 제적 위험자 조회 */
     public static void findAttendanceCrew() {
         System.out.print("제적 위험자 조회 결과\n"
             + "- 빙티: 결석 3회, 지각 2회 (면담)\n"
             + "- 이든: 결석 2회, 지각 4회 (면담)\n"
             + "- 쿠키: 결석 2회, 지각 2회 (경고)\n"
             + "- 빙봉: 결석 1회, 지각 5회 (경고)");
-    }
-
-    public static void printErrorMessage(IllegalArgumentException e) {
-        System.out.println(e.getMessage());
     }
 }
 
