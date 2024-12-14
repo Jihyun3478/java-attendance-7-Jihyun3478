@@ -1,5 +1,7 @@
 package attendance.controller;
 
+import java.util.List;
+
 import attendance.domain.Attendance;
 import attendance.domain.Attendances;
 import attendance.domain.Calendar;
@@ -11,7 +13,7 @@ import attendance.view.OutputView;
 
 public class AttendanceController {
 
-    private final Attendances attendances = FileService.createAttendances();
+    private Attendances attendances = FileService.createAttendances();
     private final AttendanceService attendanceService;
 
     public AttendanceController(AttendanceService attendanceService) {
@@ -29,6 +31,7 @@ public class AttendanceController {
         while (!chooseFunction.equals("Q")) {
             OutputView.start(day, dayOfWeek);
             chooseFunction = InputView.chooseFunction();
+            // TODO: 5가 아닌 day로 수정
             Calendar.isWeekend(5, dayOfWeek);
 
             if (chooseFunction.equals("1")) {
@@ -53,7 +56,7 @@ public class AttendanceController {
         OutputView.inputGoTime();
         String time = InputView.goTime();
 
-        attendanceService.check(nickname, time, attendances, day);
+        this.attendances = attendanceService.check(nickname, time, attendances, day);
 
         OutputView.finishAttendanceTime(day, dayOfWeek, time);
     }
@@ -67,11 +70,16 @@ public class AttendanceController {
         OutputView.inputWhenModify();
         String modifyTime = InputView.modifyTime();
         OutputView.finishModifyTime();
+
+
     }
 
     private void recordAttendance() {
         /* 출석 기록 */
-        OutputView.attendaceRecord();
+        OutputView.inputNickname();
+        String nickname = InputView.nickname();
+        List<Attendance> attendancesByNickname = attendanceService.attendancesByNickname(attendances, nickname);
+        OutputView.attendanceRecord(attendancesByNickname, nickname);
     }
 
     private void dangerAttendance() {

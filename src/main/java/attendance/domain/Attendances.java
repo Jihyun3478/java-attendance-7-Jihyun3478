@@ -2,6 +2,7 @@ package attendance.domain;
 
 import static attendance.exception.ErrorMessage.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Attendances {
@@ -11,8 +12,14 @@ public class Attendances {
         this.attendances = attendances;
     }
 
-    public List<Attendance> getAttendances() {
-        return attendances;
+    public List<Attendance> getAttendancesByNickname(String nickname) {
+        List<Attendance> attendancesByNickname = new ArrayList<>();
+        for(Attendance attendance : attendances) {
+            if(attendance.getNickname().equals(nickname)) {
+                attendancesByNickname.add(attendance);
+            }
+        }
+        return attendancesByNickname;
     }
 
     public void add(String nickname, int currentDay, String time) {

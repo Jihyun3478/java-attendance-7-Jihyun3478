@@ -1,5 +1,11 @@
 package attendance.view;
 
+import java.util.List;
+
+import attendance.domain.Attendance;
+import attendance.domain.AttendanceType;
+import attendance.domain.Attendances;
+
 public class OutputView {
     public static void start(int day, String dayOfWeek) {
         System.out.println("오늘은 12월 " + day + "일 " + dayOfWeek + "입니다. 기능을 선택해 주세요.");
@@ -43,24 +49,15 @@ public class OutputView {
     }
 
     /* 출석 기록 */
-    public static void attendaceRecord() {
-        System.out.print("이번 달 빙티의 출석 기록입니다.\n"
-            + "\n"
-            + "12월 02일 월요일 13:00 (출석)\n"
-            + "12월 03일 화요일 09:58 (출석)\n"
-            + "12월 04일 수요일 10:02 (출석)\n"
-            + "12월 05일 목요일 10:06 (지각)\n"
-            + "12월 06일 금요일 10:01 (출석)\n"
-            + "12월 09일 월요일 --:-- (결석)\n"
-            + "12월 10일 화요일 10:08 (지각)\n"
-            + "12월 11일 수요일 --:-- (결석)\n"
-            + "12월 12일 목요일 --:-- (결석)\n"
-            + "\n"
-            + "출석: 4회\n"
-            + "지각: 2회\n"
-            + "결석: 3회\n"
-            + "\n"
-            + "면담 대상자입니다.");
+    public static void attendanceRecord(List<Attendance> attendancesByNickname, String nickname) {
+        System.out.printf("%n이번 달 %s의 출석 기록입니다.%n", nickname);
+        for(Attendance attendance : attendancesByNickname) {
+            String date = attendance.getDate();
+            String time = attendance.getTime();
+            String attendanceType = String.valueOf(attendance.getAttendanceType());
+            System.out.printf("%s %s (%s) %n", date, time, attendanceType);
+        }
+        System.out.println();
     }
 
     /* 제적 위험자 조회 */

@@ -1,5 +1,8 @@
 package attendance.service;
 
+import java.util.List;
+
+import attendance.domain.Attendance;
 import attendance.domain.Attendances;
 
 public class AttendanceService {
@@ -11,6 +14,10 @@ public class AttendanceService {
         }
         this.attendances = attendances;
         return attendances;
+    }
+
+    public List<Attendance> attendancesByNickname(Attendances attendances, String nickname) {
+        return attendances.getAttendancesByNickname(nickname);
     }
 
     private boolean isRegisterCrew(String nickname, Attendances attendances) {
