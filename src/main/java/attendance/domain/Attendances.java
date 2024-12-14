@@ -16,7 +16,7 @@ public class Attendances {
     }
 
     public void add(String nickname, int currentDay, String time) {
-        attendances.add(new Attendance(nickname, "2024-12-" + currentDay + " " + time));
+        attendances.add(new Attendance(nickname, "2024-12-" + currentDay + " " + time, AttendanceType.출석));
     }
 
     public boolean isRegisterCrew(String nickname) {

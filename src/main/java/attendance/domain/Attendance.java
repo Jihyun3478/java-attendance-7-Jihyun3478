@@ -4,13 +4,14 @@ public class Attendance {
     private final String nickname;
     private final String date;
     private final String time;
-    private AttendanceType attendanceType;
+    private final AttendanceType attendanceType;
 
-    public Attendance(String nickname, String datetime) {
+    public Attendance(String nickname, String datetime, AttendanceType attendanceType) {
         this.nickname = nickname;
         String[] splitDateTime = datetime.split(" ");
         this.date = splitDateTime[0];
         this.time = splitDateTime[1];
+        this.attendanceType = attendanceType;
     }
 
     public String getNickname() {
@@ -23,5 +24,9 @@ public class Attendance {
 
     public String getTime() {
         return time;
+    }
+
+    public AttendanceType getAttendanceType() {
+        return attendanceType;
     }
 }

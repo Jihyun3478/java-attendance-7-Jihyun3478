@@ -10,6 +10,7 @@ import attendance.view.InputView;
 import attendance.view.OutputView;
 
 public class AttendanceController {
+
     private final Attendances attendances = FileService.createAttendances();
     private final AttendanceService attendanceService;
 
@@ -18,27 +19,28 @@ public class AttendanceController {
     }
 
     public void run() {
+
         CurrentDay currentDay = new CurrentDay();
         int day = currentDay.getDay();
         String dayOfWeek = currentDay.getDayOfWeek();
 
         String chooseFunction = "";
 
-        while(!chooseFunction.equals("Q")) {
+        while (!chooseFunction.equals("Q")) {
             OutputView.start(day, dayOfWeek);
             chooseFunction = InputView.chooseFunction();
             Calendar.isWeekend(5, dayOfWeek);
 
-            if(chooseFunction.equals("1")) {
+            if (chooseFunction.equals("1")) {
                 checkAttendance(day, dayOfWeek);
             }
-            if(chooseFunction.equals("2")) {
+            if (chooseFunction.equals("2")) {
                 modifyAttendance();
             }
-            if(chooseFunction.equals("3")) {
+            if (chooseFunction.equals("3")) {
                 recordAttendance();
             }
-            if(chooseFunction.equals("4")) {
+            if (chooseFunction.equals("4")) {
                 dangerAttendance();
             }
         }

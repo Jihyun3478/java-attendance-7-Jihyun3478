@@ -5,16 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import attendance.domain.Attendance;
+import attendance.domain.AttendanceType;
 
 public class Parser {
-	public static int convertToInt(String input) {
-		try {
-			return Integer.parseInt(input);
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("금액은 숫자여야 합니다.");
-		}
-	}
-
 	public static List<Attendance> parseAttendance(List<String> lines) {
 		return lines.stream()
 			.skip(1)
@@ -27,7 +20,7 @@ public class Parser {
 		String nickname = columns.get(0);
 		String datetime = columns.get(1);
 
-		return new Attendance(nickname, datetime);
+		return new Attendance(nickname, datetime, AttendanceType.출석);
 	}
 
 	private static List<String> parseLine(String line) {
