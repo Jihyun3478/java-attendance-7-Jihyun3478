@@ -8,9 +8,9 @@ import attendance.domain.Attendances;
 public class AttendanceService {
     private Attendances attendances;
 
-    public Attendances check(String nickname, String time, Attendances attendances, int currentDay) {
+    public Attendances check(String nickname, String time, Attendances attendances, int currentDay, String dayOfWeek) {
         if (isRegisterCrew(nickname, attendances) && !alreadyAttendance(nickname, currentDay, attendances)) {
-            attendances.add(nickname, currentDay, time);
+            attendances.add(nickname, currentDay, time, dayOfWeek);
         }
         this.attendances = attendances;
         return attendances;

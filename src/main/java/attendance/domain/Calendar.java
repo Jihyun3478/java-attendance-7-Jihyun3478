@@ -27,7 +27,7 @@ public enum Calendar {
     _22(22, "일요일", true),
     _23(23, "월요일", false),
     _24(24, "화요일", false),
-    _25(25, "수요일", false),
+    _25(25, "수요일", true),
     _26(26, "목요일", false),
     _27(27, "금요일", false),
     _28(28, "토요일", true),
@@ -38,19 +38,19 @@ public enum Calendar {
 
     private final int day;
     private final String dayOfWeek;
-    private final boolean isWeekend;
+    private final boolean isHoliday;
 
-    Calendar(int day, String dayOfWeek, boolean isWeekend) {
+    Calendar(int day, String dayOfWeek, boolean isHoliday) {
         this.day = day;
         this.dayOfWeek = dayOfWeek;
-        this.isWeekend = isWeekend;
+        this.isHoliday = isHoliday;
     }
 
     public int getDay() {
         return day;
     }
 
-    public static boolean isWeekend(int day, String dayOfWeek) {
+    public static boolean isHoliday(int day, String dayOfWeek) {
         for(Calendar calendar : Calendar.values()) {
             if(calendar.getDay() == day) {
                 if(calendar.dayOfWeek.equals("토요일") || calendar.dayOfWeek.equals("일요일")) {
